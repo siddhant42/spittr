@@ -1,0 +1,13 @@
+com\data\Spittle.class
+com\data\SpittleRepository.class
+com\controllers\HomeController.class
+com\data\SpitterRepositoryImpl.class
+com\webconfig\WebConfig.class
+com\data\Spitter.class
+com\data\SplittleRepositoryImpl.class
+com\controllers\SpittleController.class
+com\data\SpitterRepository.class
+com\webconfig\RootConfig.class
+com\webconfig\SpittrWebAppInitializer.class
+com\controllers\SpitterController.class
+com\conn\MysqlConnection.class

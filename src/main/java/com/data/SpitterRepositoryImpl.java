@@ -8,23 +8,28 @@ import java.sql.SQLException;
 import com.conn.MysqlConnection;
 
 public class SpitterRepositoryImpl implements SpitterRepository {
-	public boolean save(Spitter spitter) throws SQLException {
-		Connection conn = MysqlConnection.getConnection();
-		String query = "insert into spitter(username,password,firstName,lastName) values(?,?,?,?)";
-		PreparedStatement ps = conn.prepareStatement(query);
-		ps.setString(1, spitter.getUsername());
-		ps.setString(2, spitter.getPassword());
-		ps.setString(3, spitter.getFirstName());
-		ps.setString(4, spitter.getLastName());
-		int i = ps.executeUpdate();
-		conn.close();
+	public boolean save(Spitter spitter) throws SQLException,ClassNotFoundException  {
+		Connection conn;
+		int i=-1;
+			conn = MysqlConnection.getConnection();
+			String query = "insert into spitter(username,password,firstName,lastName) values(?,?,?,?)";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, spitter.getUsername());
+			ps.setString(2, spitter.getPassword());
+			ps.setString(3, spitter.getFirstName());
+			ps.setString(4, spitter.getLastName());
+			i = ps.executeUpdate();
+			conn.close();
+		
+		
+		
 		if(i<0) return false;
 		return true;
 	}
 
-	public Spitter findByUsername(String username) throws SQLException {
+	public Spitter findByUsername(String username) throws SQLException,ClassNotFoundException {
 		Connection conn = MysqlConnection.getConnection();
-		String query = "select * from spitter where username = "+username;
+		String query = "select * from spitter where username = "+"\""+username+"\"";
 		PreparedStatement ps = conn.prepareStatement(query);
 		boolean status = ps.execute(query);
 		if(status) {
@@ -37,19 +42,13 @@ public class SpitterRepositoryImpl implements SpitterRepository {
 				sp.setFirstName(rs.getString(4));
 				sp.setLastName(rs.getString(5));
 			}
+			conn.close();
 			return sp;
 		}
 		return null;
 	}
 
-	public static void main(String[] args) throws SQLException {
-		SpitterRepository sr = new SpitterRepositoryImpl();
-		Spitter spitter = new Spitter("saurabh345","saurabh345","saurabh3","sharma3");
-		boolean status = sr.save(spitter);
-		System.out.println(status);
-		spitter = sr.findByUsername("siddhant");
-		System.out.println(spitter.getUsername()+" "+spitter.getPassword());
-	}
+
 
 
 }

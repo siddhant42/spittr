@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class MysqlConnection {
-	public static Connection getConnection() throws SQLException {
+	public static Connection getConnection() throws SQLException,ClassNotFoundException {
 		String url = "jdbc:mysql://localhost:3306/spittr";
 		String username = "root";
 		String password = "root";
+		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn =DriverManager.getConnection(url,username,password);
 		return conn;
 	}

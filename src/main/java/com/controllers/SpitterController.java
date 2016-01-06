@@ -27,15 +27,15 @@ public class SpitterController {
 		return "registerForm";
 	}
 	@RequestMapping(value="/register", method=POST)
-	public String processRegistration(Spitter spitter) throws SQLException {
+	public String processRegistration(Spitter spitter) throws SQLException,ClassNotFoundException {
 		spitterRepository.save(spitter);
 		return "redirect:/spitter/" +
 		spitter.getUsername();
 	}
 	@RequestMapping(value="/{username}", method=GET)
 	public String showSpitterProfile(@PathVariable String username, Model model) throws SQLException {
-			Spitter spitter = spitterRepository.findByUsername(username);
-			model.addAttribute(spitter);
+			//Spitter spitter = spitterRepository.findByUsername(username);
+			//model.addAttribute(spitter);
 			return "profile";
 			}
 }
