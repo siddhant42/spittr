@@ -9,6 +9,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<p id="demo"></p>
+
+<script>
+var spittle1 = request.getAttribute("spittle1");
+var txt = "";
+for (var spittle in spittle1) {
+   txt += spittle.id + " "spittle.message+" "+spittle.time+" "+spittle.latitude+" "+spittle.longitude+"<br>"; 
+}
+
+document.getElementById("demo").innerHTML = txt;
+</script>
+
+</body>
+<%-- <body>
 <c:forEach items="${spittle1}" var="spittle" >
 <li id="spittle_<c:out value="spittle.id"/>">
 <div class="spittleMessage">
@@ -22,5 +37,5 @@
 </div>
 </li>
 </c:forEach>
-</body>
+</body> --%>
 </html>
