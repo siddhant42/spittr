@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import com.conn.MysqlConnection;
 
 public class SpitterRepositoryImpl implements SpitterRepository {
-
-	@Override
 	public boolean save(Spitter spitter) throws SQLException {
 		Connection conn = MysqlConnection.getConnection();
 		String query = "insert into spitter(username,password,firstName,lastName) values(?,?,?,?)";
@@ -22,10 +20,8 @@ public class SpitterRepositoryImpl implements SpitterRepository {
 		conn.close();
 		if(i<0) return false;
 		return true;
-
 	}
 
-	@Override
 	public Spitter findByUsername(String username) throws SQLException {
 		Connection conn = MysqlConnection.getConnection();
 		String query = "select * from spitter where username = "+username;
@@ -45,12 +41,15 @@ public class SpitterRepositoryImpl implements SpitterRepository {
 		}
 		return null;
 	}
+
 	public static void main(String[] args) throws SQLException {
 		SpitterRepository sr = new SpitterRepositoryImpl();
-		Spitter spitter = new Spitter("saurabh123","saurabh123","saurabh","sharma");
+		Spitter spitter = new Spitter("saurabh345","saurabh345","saurabh3","sharma3");
 		boolean status = sr.save(spitter);
 		System.out.println(status);
 		spitter = sr.findByUsername("siddhant");
 		System.out.println(spitter.getUsername()+" "+spitter.getPassword());
 	}
+
+
 }
